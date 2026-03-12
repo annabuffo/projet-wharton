@@ -1,0 +1,67 @@
+* {
+    background-color: hwb(0 97% 3%);
+}
+
+/*Header*/
+
+h1 {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: auto;
+}
+
+
+.nav-barre {
+    background-color: rgb(16, 16, 112);
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+
+/*header*/
+
+/*main*/
+
+.new {
+    background-color: rgb(167, 10, 10);
+    border: 1px solid transparent;
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    padding-left: 10em;
+    padding-right: 10em;
+    font-size: larger;
+    font-weight: 600;
+    align-items: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+
+.fixed,
+.regional,
+.industry {
+    border: 1px solid lightgray;
+    margin-top: 30px;
+    border-radius: 4px;
+    background-color: white;
+}
+
+h2,
+p,
+a,
+li {
+    background-color: white;
+}
+
+.IA-general,
+.finance,
+.new-york {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+/*main*/

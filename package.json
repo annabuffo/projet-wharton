@@ -1,0 +1,25 @@
+{
+  "name": "projet-wharton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annabuffo/projet-wharton.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annabuffo/projet-wharton/issues"
+  },
+  "homepage": "https://github.com/annabuffo/projet-wharton#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "node": "^22.22.1"
+  }
+}

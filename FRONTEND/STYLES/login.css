@@ -1,0 +1,23 @@
+* {
+    background-color: hwb(0 97% 3%);
+}
+
+/*Header*/
+
+h1 {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: auto;
+}
+
+
+.nav-barre {
+    background-color: rgb(16, 16, 112);
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+
+/*header*/
