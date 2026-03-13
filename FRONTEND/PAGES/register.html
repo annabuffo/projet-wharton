@@ -30,25 +30,29 @@
     <!--FIN HEADER-->
 
     <!--DEBUT MAIN-->
+    <div class="container-register">
+        <h2 class="title-register">INSCRIPTION</h2>
+        <form action="register">
 
-    <div class="container-login">
-        <h2 class="title-login">Log In</h2>
-        <form action="login">
+            <label for="nom">Nom d'utilisateur</label>
+            <input type="text" id="nom" name="user-name" required>
 
-            <label for="email">email</label>
-            <input type="text" placeholder="" required>
+            <label for="email">Emai</label>
+            <input type="text">
 
-            <label for="password">password</label>
-            <input type="text" placeholder="" required>
+            <label for="password">Mot de passe</label>
+            <input type="text" id="password" name="password" required>
 
-            <button type="button">Submit</button>
+            <label for="password">Cofirmation mot de passe</label>
+            <input type="text" id="password" name="confirmation-password" required>
 
-            <p class="redirection-register">Vous n'avez pas de compte ? <a href="./register.html">Inscrivez-vous</a></p>
+            <button class="button-form-register" type="submit">Inscription</button>
         </form>
+
+        <p>Vous avez déjà un compte ?<a href="./login.html">Connectez-vous</a></p>
     </div>
 
     <!--FIN MAIN-->
-
 </body>
 
 </html>
