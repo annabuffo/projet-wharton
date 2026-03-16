@@ -1,7 +1,3 @@
-* {
-    background-color: hwb(0 97% 3%);
-}
-
 /*Header*/
 
 h1 {
@@ -26,17 +22,13 @@ h1 {
 
 .new {
     background-color: rgb(167, 10, 10);
-    border: 1px solid transparent;
     color: white;
     border-radius: 4px;
-    padding: 10px;
-    padding-left: 10em;
-    padding-right: 10em;
+    padding: 10px 12em;
     font-size: larger;
     font-weight: 600;
-    align-items: center;
-    margin-left: 20%;
-    margin-right: 20%;
+    display: block;
+    margin: 30px auto;
 }
 
 
@@ -56,12 +48,29 @@ li {
     background-color: white;
 }
 
+.titles {
+    display: flex;
+    gap: 40px;
+    padding-top: 10px;
+    margin: ;
+}
+
 .IA-general,
 .finance,
 .new-york {
-    background-color: white;
-    border: 1px solid lightgray;
+    border: 1px solid gray;
+    color: white;
     border-radius: 4px;
+    padding: 10px 12em;
+    font-size: larger;
+    font-weight: 600;
+    display: block;
+    margin: 30px auto;
+}
+
+.plus-sujets {
+    text-align: center;
+    color: rgb(16, 16, 112);
 }
 
 /*main*/
