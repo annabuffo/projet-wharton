@@ -1,3 +1,5 @@
+/*
+
 -----------------------------
 --TABLE :  public.admin
 -----------------------------
@@ -417,6 +419,7 @@ CREATE TABLE publication_has_commentaire (
     CONSTRAINT uq_cht_commentaire_publication UNIQUE (commentaire_id, publication_id)
 );
 
+*/
 _____________________________________________________________________________________________________
 
 -----------------------------
@@ -429,7 +432,7 @@ CREATE TABLE admin (
     password VARCHAR(50) NOT NULL,
     pseudo VARCHAR(100) NOT NULL,
     role TEXT,
-    date_inscripton TIMESTAMP 
+    date_inscription TIMESTAMP 
 );
 
 -----------------------------
@@ -437,11 +440,11 @@ CREATE TABLE admin (
 -----------------------------
 
 CREATE TABLE users (
-    id PRIMARY KEY,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     pseudo VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     date_modification TIMESTAMP,
-    date_inscripton TIMESTAMP
+    date_inscription TIMESTAMP
 );
 
 -----------------------------
@@ -449,60 +452,59 @@ CREATE TABLE users (
 -----------------------------
 
 CREATE TABLE discussion (
-    id PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT,
     role TEXT,
     publiee TIMESTAMP,
     date_creation TIMESTAMP,
     date_modification TIMESTAMP
-)
+);
 
 -----------------------------
 -- TABLE : events
 -----------------------------
 
 CREATE TABLE events (
-    id PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT,
     date_creation TIMESTAMP,
     date_modification TIMESTAMP
-)
+);
 
 -----------------------------
 -- TABLE : publication
 -----------------------------
 
 CREATE TABLE publication (
-    id PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT,
     role TEXT,
     date_modification TIMESTAMP,
     date_creation TIMESTAMP
-)
+);
 
 -----------------------------
 -- TABLE : commentaire
 -----------------------------
 
 CREATE TABLE commentaire (
-    id PRIMARY KEY,
-    title VARCHAR(50) NOT NULL,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT,
     role TEXT,
     date_creation TIMESTAMP,
     date_modification TIMESTAMP
-)
+);
 
 ----------------------------------------------------------
 -- users_has_publication
 ----------------------------------------------------------
 
 CREATE TABLE users_has_publication (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_users INTEGER NOT NULL,
     id_publication INTEGER NOT NULL,
 
-    UNIQUE (id_users, id_publication),
+    PRIMARY KEY (id_users, id_publication),
 
     FOREIGN KEY (id_publication)
         REFERENCES publication(id) ON DELETE CASCADE,
@@ -516,12 +518,11 @@ CREATE TABLE users_has_publication (
 ----------------------------------------------------------
 
 CREATE TABLE users_has_events (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_users INTEGER NOT NULL,
     id_events INTEGER NOT NULL,
 
-    UNIQUE (id_users, id_events)
+    PRIMARY KEY (id_users, id_events),
 
     FOREIGN KEY (id_events)
         REFERENCES events(id) ON DELETE CASCADE,
@@ -536,18 +537,17 @@ CREATE TABLE users_has_events (
 ----------------------------------------------------------
 
 CREATE TABLE users_has_commentaire (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_users INTEGER NOT NULL,
     id_commentaire INTEGER NOT NULL,
 
-    UNIQUE (id_users, id_commentaire)
+    PRIMARY KEY (id_users, id_commentaire),
 
     FOREIGN KEY (id_commentaire)
         REFERENCES commentaire(id) ON DELETE CASCADE,
 
     FOREIGN KEY (id_users)
-        REFERENCES user(id) ON DELETE CASCADE
+        REFERENCES users(id) ON DELETE CASCADE
 );
 
 ----------------------------------------------------------
@@ -555,12 +555,11 @@ CREATE TABLE users_has_commentaire (
 ----------------------------------------------------------
 
 CREATE TABLE users_has_discussion (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_users INTEGER NOT NULL,
     id_discussion INTEGER NOT NULL,
 
-    UNIQUE (id_users, id_discussion)
+    PRIMARY KEY (id_users, id_discussion),
 
     FOREIGN KEY (id_discussion)
         REFERENCES discussion(id) ON DELETE CASCADE,
@@ -574,12 +573,11 @@ CREATE TABLE users_has_discussion (
 ----------------------------------------------------------
 
 CREATE TABLE admin_has_publication (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_admin INTEGER NOT NULL,
     id_publication INTEGER NOT NULL,
 
-    UNIQUE (id_admin, id_publication)
+    PRIMARY KEY (id_admin, id_publication),
 
     FOREIGN KEY (id_publication)
         REFERENCES publication(id) ON DELETE CASCADE,
@@ -593,12 +591,11 @@ CREATE TABLE admin_has_publication (
 ----------------------------------------------------------
 
 CREATE TABLE admin_has_discussion (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_admin INTEGER NOT NULL,
     id_discussion INTEGER NOT NULL,
 
-    UNIQUE (id_admin, id_discussion)
+    PRIMARY KEY (id_admin, id_discussion),
 
     FOREIGN KEY (id_discussion)
         REFERENCES discussion(id) ON DELETE CASCADE,
@@ -612,12 +609,11 @@ CREATE TABLE admin_has_discussion (
 ----------------------------------------------------------
 
 CREATE TABLE admin_has_events (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_admin INTEGER NOT NULL,
     id_events INTEGER NOT NULL,
 
-    UNIQUE (id_admin, id_events)
+    PRIMARY KEY (id_admin, id_events),
 
     FOREIGN KEY (id_events)
         REFERENCES events(id) ON DELETE CASCADE,
@@ -631,12 +627,11 @@ CREATE TABLE admin_has_events (
 ----------------------------------------------------------
 
 CREATE TABLE admin_has_commentaire (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_admin INTEGER NOT NULL,
     id_commentaire INTEGER NOT NULL,
 
-    UNIQUE (id_admin, id_commentaire)
+    PRIMARY KEY (id_admin, id_commentaire),
 
     FOREIGN KEY (id_commentaire)
         REFERENCES commentaire(id) ON DELETE CASCADE,
@@ -650,12 +645,11 @@ CREATE TABLE admin_has_commentaire (
 ----------------------------------------------------------
 
 CREATE TABLE discussion_has_publication (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_discussion INTEGER NOT NULL,
     id_publication INTEGER NOT NULL,
 
-    UNIQUE (id_discussion, id_publication)
+    PRIMARY KEY (id_discussion, id_publication),
 
     FOREIGN KEY (id_publication)
         REFERENCES publication(id) ON DELETE CASCADE,
@@ -669,12 +663,11 @@ CREATE TABLE discussion_has_publication (
 ----------------------------------------------------------
 
 CREATE TABLE publication_has_commentaire (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
     id_publication INTEGER NOT NULL,
     id_commentaire INTEGER NOT NULL,
 
-    UNIQUE (id_publication, id_commentaire)
+    PRIMARY KEY (id_publication, id_commentaire),
 
     FOREIGN KEY (id_commentaire)
         REFERENCES commentaire(id) ON DELETE CASCADE,
