@@ -5,7 +5,12 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "db:create": "node migration/01.create-table.js",
+    "db:reset": "node migration/02.reset-table.js",
+    "backend:install": "cd backend && npm install",
+    "backend:start": "cd backend && npm start",
+    "backend:dev": "cd backend && npm run dev"
   },
   "repository": {
     "type": "git",
@@ -20,6 +25,10 @@
   "homepage": "https://github.com/annabuffo/projet-wharton#readme",
   "dependencies": {
     "express": "^5.2.1",
-    "node": "^22.22.1"
+    "node": "^22.22.1",
+    "postgres": "^3.4.8",
+    "psql": "^0.0.1",
+    "sqlite3": "^6.0.1",
+    "svelte": "^5.54.1"
   }
 }
