@@ -19,6 +19,8 @@ router.get('/Users', async (req, res) => {
                 { model: Users, as: 'author', attributes: ['id', 'username'] },
                 { model: Discussion, as: 'discussions' },
                 { model: Events, as: 'events' },
+                { model: Publication, as: 'publications' },
+                { model: Commentaire, as: 'commentaires' }
             ]
         });
         res.status(200).json(users);
@@ -46,7 +48,7 @@ router.put('Users/:id', async (req, res) => {
 router.delete('Users/:id', async (req, res) => {
     try {
         const users = await Users.findByPk(req.params.id);
-        if (!Uers) {
+        if (!users) {
             return res.status(404).json({ error: 'Utilisateur non trouvé' })
         }
 
