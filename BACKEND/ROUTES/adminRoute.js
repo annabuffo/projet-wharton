@@ -194,7 +194,7 @@ router.put('/publiactions', async (req, res) => {
 
 router.delete('/publications', async (req, res) => {
     try {
-        const mpublications = await Publication.findByPk(req.params.id);
+        const publications = await Publication.findByPk(req.params.id);
         if (!publications) {
             return rmSync.status(404).json({ error: 'Publication non trouvée' });
         }
@@ -211,7 +211,7 @@ router.get('/commentaires', async (req, res) => {
     try {
         const commentaires = await Commentaires.findAll();
         res.status(200).json(commentaires);
-    } catch (errro) {
+    } catch (error) {
         res.status(500).json({ error: error.message });
     }
 })

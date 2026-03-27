@@ -26,7 +26,7 @@ export async function getPublicationById(req, res, next) {
 
 export async function createPublication(req, res, next) {
     try {
-        const { title, description, date_creatio } = req.body;
+        const { title, description, date_creation } = req.body;
         const db = await operDb();
         const result = await db.run(
             "INSERT INTO publications (title, description, date_creation) VALUES (?, ?, ?)",

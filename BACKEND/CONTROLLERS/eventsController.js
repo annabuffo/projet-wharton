@@ -71,6 +71,7 @@ export async function deleteEvent(req, res) {
         const { id } = req.params;
         const db = await operDb();
         const event =  await db.run("DELETE FROM events WHERE id = ?", id);
+        
         if (result.changes === 0) {
             return res.status(404).json({ message: "Event non trouvé" });
         }
