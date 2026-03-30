@@ -47,7 +47,7 @@ export async function updateLogin(req, res, next) {
         const { id } = req.params;
         const { username, password, date_creation } = req.body;
 
-        if (!uername || !password || !date_creation) {
+        if (!id|| !password || !date_creation ||!username ) {
             return res.status(404).json({ message: "tous les champs sont requis" });
         }
         res.status(204).json();

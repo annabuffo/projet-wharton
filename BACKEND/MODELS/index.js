@@ -19,7 +19,7 @@ if (dbConfig.use_env_variable) {
 }
 
 const modelFiles = readdirSync(__dirname);
-    .filter((file =>  {
+    filter((file =>  {
         return (
             file.indexof('.') !== 0 && 
             file !== basename && 

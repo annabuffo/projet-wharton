@@ -30,11 +30,11 @@ export async function getUserById(req, res , next) {
 
 export async function createUser(req, res, next) {
     try {
-        const  { name, email, password, login_id} = req.params;
+        const  { username, email, password, login_id} = req.params;
         const db = await operDb();
         const result = await db.run(
-            "INSERT INTO users (name, email, password, login_id) VALUES (?, ?, ?, ?)",
-            name,
+            "INSERT INTO users (username, email, password, login_id) VALUES (?, ?, ?, ?)",
+            username,
             email,
             password,
             login_id || "",
@@ -47,18 +47,18 @@ export async function createUser(req, res, next) {
     }
 }
 
-export async function upadateUser(req, res, next) {
+export async function updateUser(req, res, next) {
     try {
         const { id } = req.params;
-        const { name, email, password, login_id } = req.body;
+        const { username, email, password, login_id } = req.body;
 
-        if(!name || !email || !password || !login_id) {
-            return res.status(404).json({ messsgae: "Tous les champs sont requis" });   
+        if(!username || !email || !password || !login_id) {
+            return res.status(404).json({ message: "Tous les champs sont requis" });   
         }
 
         await db.run(
-            "UPDATE users SET name = ?, email = ?, password = ?, login_id = ? WHERE id = ?",
-            name,
+            "UPDATE users SET username = ?, email = ?, password = ?, login_id = ? WHERE id = ?",
+            username,
             email,
             password,
             login_id || "",
