@@ -17,7 +17,7 @@ export async function openDb() {
 export async function initDb() {
   const db = await openDb();
   await db.exec(`
-    CREATE TABLE IF NOT EXISTS discussions (
+    CREATE TABLE IF NOT EXISTS logins (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,
       description TEXT NOT NULL,
