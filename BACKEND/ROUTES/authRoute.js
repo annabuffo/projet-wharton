@@ -7,6 +7,7 @@ const router = Router();
 router.get("/", isAuthenticated, authController.getAllAuth);
 router.get("/:id", isAuthenticated, authController.getAuthById);
 router.post("/", isAuthenticated, authController.updateAuth);
+router.put("/:id", isAuthenticated, authMiddleware, authController.updateAuth);
 router.delete("/:id", isAuthenticated, authMiddleware, authController.deleteAuth);
 
 export default router;

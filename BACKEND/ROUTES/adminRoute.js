@@ -4,7 +4,7 @@ import { validate } from '../MIDDLEWARES/validator.js';
 import { body } from 'express-validtor';
 import db from '../MODELS/db.js';
 
-const { Users, Discussion, Events, Publication, Commentaire } = db;
+const { Users, Discussion, Events, Publication, Commentaire, Login } = db;
 
 const router = express.Router();
 
@@ -20,7 +20,8 @@ router.get('/Users', async (req, res) => {
                 { model: Discussion, as: 'discussions' },
                 { model: Events, as: 'events' },
                 { model: Publication, as: 'publications' },
-                { model: Commentaire, as: 'commentaires' }
+                { model: Commentaire, as: 'commentaires' },
+                { model: Login, as: 'logins' }
             ]
         });
         res.status(200).json(users);
@@ -30,7 +31,7 @@ router.get('/Users', async (req, res) => {
     }
 });
 
-router.put('Users/:id', async (req, res) => {
+router.put('/Users/:id', async (req, res) => {
     try {
         const users = await Users.findByPk(req.params.id);
         if (!users) {
@@ -45,7 +46,7 @@ router.put('Users/:id', async (req, res) => {
 });
 
 
-router.delete('Users/:id', async (req, res) => {
+router.delete('/Users/:id', async (req, res) => {
     try {
         const users = await Users.findByPk(req.params.id);
         if (!users) {
@@ -103,7 +104,7 @@ router.delete('/discussions/:id', async (req, res) => {
         }
 
         await discussion.destroy();
-        res.status(404).send();
+        res.status(204).send();
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -155,7 +156,7 @@ router.delete('/events/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-})
+});
 
 // ---------- PUBLICATION ----------
 
@@ -179,7 +180,7 @@ router.post('/publications', [
     }
 });
 
-router.put('/publiactions', async (req, res) => {
+router.put('/publications/:id', async (req, res) => {
     try {
         const publications = await Publication.findByPk(req.params.id);
         if (!publications) {
@@ -192,11 +193,11 @@ router.put('/publiactions', async (req, res) => {
     }
 });
 
-router.delete('/publications', async (req, res) => {
+router.delete('/publications/:id', async (req, res) => {
     try {
         const publications = await Publication.findByPk(req.params.id);
         if (!publications) {
-            return rmSync.status(404).json({ error: 'Publication non trouvée' });
+            return res.status(404).json({ error: 'Publication non trouvée' });
         }
         await publications.destroy();
         res.status(204).send();
@@ -214,8 +215,7 @@ router.get('/commentaires', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-})
-    ;
+});
 
 router.post('/commentaires', [
     body('content').notEmpty().WithMessage('Le contenu est requis')
@@ -231,7 +231,7 @@ router.post('/commentaires', [
 
 router.put('/commentaires/:id', async (req, res) => {
     try {
-        const commentaires = await Commentaires.findAllByPk(req.params.id);
+        const commentaires = await Commentaires.findByPk(req.params.id);
         if (!commentaires) {
             return res.status(404).json({ error: 'Commentaire non trouvé' });
         }
@@ -245,7 +245,7 @@ router.put('/commentaires/:id', async (req, res) => {
 router.delete('/commentaires/:id', async (req, res) => {
     try {
         const commentaires = await Commentaires.findAllByPk(req.params.id);
-        if (!commmentaires) {
+        if (!commentaires) {
             return res.status(404).json({ error: 'Commentaire non trouvé' });
         }
         await commentaires.destroy();
@@ -253,4 +253,53 @@ router.delete('/commentaires/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-})
+});
+
+// ---------- LOGINS ----------  
+
+router.get('/logins', async (req, res) => {
+    try {
+        const logins = await Login.findAll();
+        res.status(200).json(logins);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.post('/Logins', [
+    body('username').notEmpty().WithMessage('Le nom d\'utilisateur est requis'),
+    body('password').notEmpty().WithMessage('Le mot de passe est requis')
+], validate, async (req, res) => {
+    try {
+        const logins = await Login.create(req.body);
+        res.statys(201).json(logins);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.put('/Logins/:id', async (req, res) => {
+    try {
+        const logins = await Login.findByPk(req.params.id);
+        if (!logins) {
+            return res.status(404).json({ error: 'Login non trouvé' });
+        }
+        await logins.update(req.body);
+        res.status(200).json(logins);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.delete('/Logins/:id', async (req, res) => {
+    try {
+        const logins = await Login.findByPk(req.params.id);
+        if (!logins) {
+            return res.status(404).json({ error: 'Login non trouvé' });
+        }
+        await logins.destroy();
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});

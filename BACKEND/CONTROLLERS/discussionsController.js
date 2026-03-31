@@ -52,6 +52,7 @@ export async function updateDiscussion(req, res, next) {
             return res.status(404).json({ message: "Tous les champs sont requis" });
         }
 
+        const db = await operDb();
         await db.run(
             "UPDATE discussions SET title = ?, description = ?, content = ?, date_creation = ? WHERE id = ?",
             title,

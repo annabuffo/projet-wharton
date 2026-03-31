@@ -10,7 +10,7 @@ const router = Router();
 
 router.use("admin", adminRoute);
 router.use("auth", authRoute);
-router.use("dashboard", dashboardRoute);
+router.use("discussion", discussionRoute);
 router.use("events", eventsRoute);
 router.use("login", loginRoute);
 router.use("users", usersRoute);
